@@ -1,5 +1,9 @@
 reated by https://www.gitignore.io/api/osx,sublimetext,node,grunt,gcov
 
+# Ignore transpiled JS file
+main.js
+
+
 ### OSX ###
 .DS_Store
 .AppleDouble
