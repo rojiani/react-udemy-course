@@ -1,0 +1,62 @@
+<head>
+  <script src="https://fb.me/react-0.14.7.js"></script>
+  <script src="https://fb.me/react-dom-0.14.7.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 target">
+      </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/jsx">
+  // Define a React Component Class
+  var Badge = React.createClass({
+    render: function () {
+      return (
+        <button className="btn btn-primary" type="button">
+        {this.props.title} <span className="badge">{this.props.number}</span>
+        </button>
+      );
+    }
+  });
+  
+  // Define Thumbnail component
+  var Thumbnail = React.createClass({
+    render: function () {
+      return (
+        <div className="thumbnail">
+          <img src={this.props.imageUrl}/>
+          <div className="caption">
+            <h3>{this.props.header}</h3>
+            <p>{this.props.description}</p>
+            <p>
+              <Badge title={this.props.title} number={this.props.number} />
+            </p>
+          </div>
+        </div>
+      );
+    }
+  });
+  
+  var options = {
+    title       : 'See Tutorial',
+    number      : '32',
+    header      : 'Learn React',
+    description : 'React is a fantastic new library for making fast, dynamic web apps. React is a fantastic new library for making fast, dynamic web apps.',
+    imageUrl    : 'http://formatjs.io/img/react.svg'
+  };
+  
+  // Ask React to render this class
+  var element = React.createElement(Thumbnail, options);
+  
+  // When we ask React to render this class, we will tell it
+  // where to place the rendered element in the DOM
+  ReactDOM.render(element, document.querySelector('.target'));
+
+</script>
