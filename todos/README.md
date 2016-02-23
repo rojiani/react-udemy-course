@@ -15,7 +15,8 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 ```
 	> git clone https://github.com/StephenGrider/ReactStarter.git
 	> cd ReactStarter
-	> npm install
+	> npm install --save reactfire@0.4.0
+	> npm install --save firebase
 	> gulp
 ```
 
