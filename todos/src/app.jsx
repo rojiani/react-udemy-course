@@ -3,13 +3,20 @@ var ReactDOM  = require('react-dom');
 var ReactFire = require('reactfire');   // Bridge between Firebase & React components
 var Firebase  = require('firebase');    // Communicate with Firebase data store
 var Header    = require('./header');
+var List      = require('./list');
 var rootUrl   = 'https://blinding-heat-4098.firebaseio.com/';
 
 
 var App = React.createClass({
   mixins: [ ReactFire ], // copies code from this object onto our React component
   componentWillMount: function () {
+    // binds data to this.state.items (?)
     this.bindAsObject(new Firebase(rootUrl + 'items/'), 'items');
+  },
+  getInitialState: function () {
+    return {
+      items: {}
+    };
   },
   render: function () {
     return (
@@ -18,7 +25,8 @@ var App = React.createClass({
           <h2 className="text-center">
             To-Do List
           </h2>
-          <Header itemsStore={this.firebaseRefs.items}/>
+          <Header itemsStore={this.firebaseRefs.items} />
+          <List items={this.state.items}/>
         </div>
       </div>
     );

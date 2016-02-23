@@ -5,7 +5,7 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {
       text: ''
-    }
+    };
   },
   handleClick: function () {
     // Send value of text input to Firebase

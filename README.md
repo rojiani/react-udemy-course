@@ -6,3 +6,6 @@ Lecture 12: Lists of Nested Components
 Lecture 20: Passing down function to child with onClick (Dropdown/Button)  
 Lecture 22: Dropdown
 Lecture 23: Confusing click-handling example. REVIEW THIS.
+Lecture 30: in app.jsx, <List items={this.state.items} />, (state passed as a prop), 
+            and in list.jsx, accessed as a prop: this.props.items
+
