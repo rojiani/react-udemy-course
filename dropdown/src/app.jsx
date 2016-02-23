@@ -8,8 +8,7 @@ var options = {
     'Apple Pie',
     'Peach Cobbler',
     'Coconut Cream Pie'
-  ]
-
+  ],
 };
 
 var element = React.createElement(Dropdown, options);
