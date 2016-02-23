@@ -1,7 +1,7 @@
 var React     = require('react');
 var ReactDOM  = require('react-dom');
 var ReactFire = require('reactfire');   // Bridge between Firebase & React components
-var Firebase  = require('firebase');    // Firebase library
+var Firebase  = require('firebase');    // Communicate with Firebase data store
 var Header    = require('./header');
 var rootUrl   = 'https://blinding-heat-4098.firebaseio.com/';
 
@@ -18,7 +18,7 @@ var App = React.createClass({
           <h2 className="text-center">
             To-Do List
           </h2>
-          <Header />
+          <Header itemsStore={this.firebaseRefs.items}/>
         </div>
       </div>
     );
