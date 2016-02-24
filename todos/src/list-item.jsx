@@ -14,8 +14,16 @@ module.exports = React.createClass({
     } else {
       return [
         <span>
-          <button className="btn btn-default">Save</button>
-          <button className="btn btn-warning">Undo</button>
+          <button
+            className="btn btn-primary"
+            onClick={this.handleSaveClick}>
+            Save
+          </button>,
+          <button
+            className="btn btn-warning"
+            onClick={this.handleUndoClick}>
+            Undo
+          </button>
         </span>
       ]
     }
@@ -27,9 +35,6 @@ module.exports = React.createClass({
       textChanged: false
     }
   },
-  handleDelete: function (event) {
-    this.fb.remove()
-  },
   handleDoneChange: function (event) {
     var update = {done: event.target.checked}
     this.setState(update);
@@ -39,6 +44,19 @@ module.exports = React.createClass({
     this.setState({
       text: event.target.value,
       textChanged: true
+    });
+  },
+  handleDeleteClick: function () {
+    this.fb.remove();
+  },
+  handleSaveClick: function (event) {
+    this.fb.update({text: this.state.text});
+    this.setState({textChanged: false});
+  },
+  handleUndoClick: function () {
+    this.setState({
+      text: this.props.item.text,
+      textChanged: false
     });
   },
   render: function () {
@@ -52,6 +70,7 @@ module.exports = React.createClass({
           />
         </span>
         <input type="text"
+          disabled={this.state.done}
           className="form-control"
           onChange={this.handleTextChanged}
           value={this.state.text}
@@ -59,8 +78,8 @@ module.exports = React.createClass({
         <span className="input-group-btn">
           {this.changesButtons()}
           <button
-            className="btn btn-default"
-            onClick={this.handleDelete}>
+            className="btn btn-danger"
+            onClick={this.handleDeleteClick}>
             Delete
           </button>
         </span>

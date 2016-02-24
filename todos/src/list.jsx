@@ -11,7 +11,7 @@ module.exports = React.createClass({
     );
   },
   renderList: function () {
-    if (this.props.items && Object.keys(this.props.items).length === 0) {
+    if (!this.props.items) {
       return (
         <h4>
           Add a Todo to get started.
