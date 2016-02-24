@@ -11,9 +11,26 @@ var App = React.createClass({
   mixins: [ ReactFire ], // copies code from this object onto our React component
   componentWillMount: function () {
     // binds data to this.state.items (?)
-    fb = new Firebase(rootUrl + 'items/');
-    this.bindAsObject(fb, 'items');
-    fb.on('value', this.handleDataLoaded);
+    this.fb = new Firebase(rootUrl + 'items/');
+    this.bindAsObject(this.fb, 'items');
+    this.fb.on('value', this.handleDataLoaded);
+  },
+  deleteButton: function () {
+    if (!this.state.loaded) {
+      return;
+    } else {
+      return (
+        <div className="text-center clear-complete">
+          <hr />
+          <button
+            type="button"
+            onClick={this.onDeleteDoneClick}
+            className="btn btn-default">
+            Clear Complete
+          </button>
+        </div>
+      );
+    }
   },
   getInitialState: function () {
     return {
@@ -23,6 +40,13 @@ var App = React.createClass({
   },
   handleDataLoaded: function () {
     this.setState({ loaded: true });
+  },
+  onDeleteDoneClick: function () {
+    for (var key in this.state.items) {
+      if (this.state.items[key].done === true) {
+        this.fb.child(key).remove();
+      }
+    }
   },
   render: function () {
     return (
@@ -34,6 +58,7 @@ var App = React.createClass({
           <Header itemsStore={this.firebaseRefs.items} />
           <div className={"content " + (this.state.loaded ? 'loaded' : '')}>
             <List items={this.state.items}/>
+            {this.deleteButton()}
           </div>
         </div>
       </div>
