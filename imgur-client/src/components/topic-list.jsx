@@ -1,24 +1,19 @@
-var React    = require('react');
-var ReactDOM = require('react-dom');
+var React      = require('react');
+var ReactDOM   = require('react-dom');
+var Reflux     = require('reflux');
 var TopicStore = require('../stores/topic-store');
 
 module.exports = React.createClass({
+  mixins: [
+    Reflux.listenTo(TopicStore, 'onChange')
+  ],
   getInitialState: function () {
     return {
       topics: []
     }
   },
   componentWillMount: function () {
-    // Calling TopicStore.getTopics() makes the TopicStore
-    // reach out, fetch our data, and assign it to this.topics
-    TopicStore.getTopics()
-      .then(function(){
-        // We have successfully fetched topics
-        // topics are available on TopicStore.topics
-        this.setState({
-          topics: TopicStore.topics
-        });
-      }.bind(this));
+    TopicStore.getTopics();
   },
   render: function () {
     return (
@@ -31,14 +26,13 @@ module.exports = React.createClass({
   renderTopics: function () {
     // Get topics array from state, map to list items containing
     // the topics
-
-    this.state.topics.forEach(function (topic) {
-      console.log(topic);
+    return this.state.topics.map(function (topic) {
+      return (
+        <li><span>{topic.name}</span> | {topic.description} (ID: {topic.id})</li>
+      );
     });
-    // return this.state.topics.map(function (topic) {
-    //   return (
-    //     <li>{topic}</li>
-    //   );
-    // });
+  },
+  onChange: function (event, topics) {
+    this.setState({ topics: topics });
   }
 });
