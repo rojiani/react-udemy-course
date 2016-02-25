@@ -1,6 +1,7 @@
 var React      = require('react');
 var ReactDOM   = require('react-dom');
 var Reflux     = require('reflux');
+var Actions = require('../actions');
 var TopicStore = require('../stores/topic-store');
 
 module.exports = React.createClass({
@@ -13,7 +14,7 @@ module.exports = React.createClass({
     }
   },
   componentWillMount: function () {
-    TopicStore.getTopics();
+    Actions.getTopics();
   },
   render: function () {
     return (
