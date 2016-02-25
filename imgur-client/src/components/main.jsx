@@ -4,6 +4,13 @@ var Header      = require('./header');
 var TopicList   = require("./topic-list");
 
 module.exports = React.createClass({
+  content: function () {
+    if (this.props.children) {
+      return this.props.children;
+    } else {
+      return <TopicList />
+    }
+  },
   render: function () {
     return (
       <div>
@@ -11,12 +18,5 @@ module.exports = React.createClass({
         {this.content()}
       </div>
     );
-  },
-  content: function () {
-    if (this.props.children) {
-      return this.props.children;
-    } else {
-      return <TopicList />
-    }
   }
 });
