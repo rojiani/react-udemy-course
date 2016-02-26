@@ -1,5 +1,7 @@
-var React        = require('react');
-var ReactDOM     = require('react-dom');
+var React       = require('react');
+var ReactDOM    = require('react-dom');
+var ReactRouter = require('react-router');
+var Link        = ReactRouter.Link;
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -9,14 +11,15 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-      <div
+      <Link
+        to={"images/" + this.props.id}
         className="image-preview"
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}>
         {this.props.animated && this.state.hovering ? this.video() : this.image()}
         {this.props.animated && !this.state.hovering ? this.icon() : null }
         {this.state.hovering ? this.inset() : null}
-      </div>
+      </Link>
     );
   },
   inset: function() {
