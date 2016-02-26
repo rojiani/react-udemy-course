@@ -4,7 +4,7 @@ var ReactRouter = require('react-router');
 var Link        = ReactRouter.Link;
 
 module.exports = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       hovering: false
     }
@@ -22,7 +22,7 @@ module.exports = React.createClass({
       </Link>
     );
   },
-  inset: function() {
+  inset: function () {
     return (
       <div className="inset">
         Views: {this.props.views}
@@ -35,7 +35,7 @@ module.exports = React.createClass({
     var link = 'http://i.imgur.com/' + this.props.id + 'h.jpg'; // image preview
     return (<img src={link} />);
   },
-  video: function() {
+  video: function () {
     return (
       <div>
         <video preload='auto' autoPlay='autoplay' loop='loop' webkit-playsinline>
@@ -44,15 +44,15 @@ module.exports = React.createClass({
       </div>
     );
   },
-  icon: function() {
+  icon: function () {
     return (
       <span className="glyphicon glyphicon-play"></span>
     );
   },
-  handleMouseEnter: function() {
+  handleMouseEnter: function () {
     this.setState({hovering: true});
   },
-  handleMouseLeave: function() {
+  handleMouseLeave: function () {
     this.setState({hovering: false});
   }
 });

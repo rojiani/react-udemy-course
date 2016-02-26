@@ -13,7 +13,7 @@ module.exports = (
   <Router history={BrowserHistory}>
     <Route path="/" component={Main}>
       <Route path="topics/:id" component={Topic} />
-      <Route path="images/:id" component={ImagePreview} />
+      <Route path="images/:id" component={ImageDetail} />
     </Route>
   </Router>
 );

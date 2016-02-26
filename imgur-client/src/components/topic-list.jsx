@@ -27,9 +27,6 @@ module.exports = React.createClass({
     );
   },
   renderTopics: function () {
-    this.state.topics.forEach(function (image) {
-      console.log(image);
-    });
     return this.state.topics.slice(0, 4).map(function (topic) {
       return (
         <Link to={"topics/" + topic.id} className="list-group-item" key={topic.id}>

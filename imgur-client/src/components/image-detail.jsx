@@ -1,11 +1,35 @@
-var React = require('react');
+var React      = require('react');
+var Reflux     = require('reflux');
+var ImageStore = require('../stores/image-store');
+var Actions    = require('../actions');
 
 module.exports = React.createClass({
-  render: function() {
+  mixins: [
+    Reflux.listenTo(ImageStore, 'onChange')
+  ],
+  getInitialState: function () {
+    return {
+      image: null
+    }
+  },
+  componentWillMount: function () {
+    Actions.getImage(this.props.params.id);
+  },
+  render: function () {
+    // console.log(this.state.image);
     return (
       <div>
-        I am an image detail.
+        <pre>
+          <code>
+            {JSON.stringify(this.state.image, null, 2)}
+          </code>
+        </pre>
       </div>
     );
+  },
+  onChange: function () {
+    this.setState({
+      image: ImageStore.find(this.props.params.id)
+    });
   }
 });
