@@ -17,7 +17,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-      <div>
+      <div className="image-detail">
         {this.state.image ? this.renderContent() : null}
       </div>
     );
