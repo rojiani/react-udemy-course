@@ -1,8 +1,10 @@
-var React      = require('react');
-var ReactDOM   = require('react-dom');
-var Reflux     = require('reflux');
-var Actions = require('../actions');
-var TopicStore = require('../stores/topic-store');
+var React       = require('react');
+var ReactDOM    = require('react-dom');
+var Reflux      = require('reflux');
+var ReactRouter = require('react-router');
+var Actions     = require('../actions');
+var TopicStore  = require('../stores/topic-store');
+var Link        = ReactRouter.Link;
 
 module.exports = React.createClass({
   mixins: [
@@ -25,11 +27,12 @@ module.exports = React.createClass({
     );
   },
   renderTopics: function () {
-    // Get topics array from state, map to list items containing
-    // the topics
     return this.state.topics.map(function (topic) {
       return (
-        <li><span>{topic.name}</span> | {topic.description} (ID: {topic.id})</li>
+        <Link to={"topics/" + topic.id} className="list-group-item" key={topic.id}>
+          <h4>{topic.name}</h4>
+          <p>{topic.description}</p>
+        </Link>
       );
     });
   },
